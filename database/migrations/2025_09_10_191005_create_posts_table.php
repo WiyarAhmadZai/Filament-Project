@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('thumbnail');
+            $table->text('content');
+            $table->string('image_url')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('color');
             $table->string('slug')->unique();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->text('content');
-            $table->json('tags');
-            $table->boolean('is_published');
+            $table->json('tags')->nullable();
+            $table->boolean('is_published')->default(true);
+            $table->integer('likes_count')->default(0);
+            $table->integer('comments_count')->default(0);
+            $table->integer('shares_count')->default(0);
             $table->timestamps();
         });
     }
