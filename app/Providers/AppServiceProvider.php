@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Register middleware aliases
+        Route::aliasMiddleware('admin', \App\Http\Middleware\AdminMiddleware::class);
+        Route::aliasMiddleware('role', \App\Http\Middleware\RoleMiddleware::class);
+        Route::aliasMiddleware('filament.admin', \App\Http\Middleware\FilamentAdminMiddleware::class);
     }
 }
