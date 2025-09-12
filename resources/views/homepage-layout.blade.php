@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <style>
         /* Tourism Site Color Palette - Enhanced with Color Psychology */
@@ -43,13 +46,9 @@
 
             /* Neutral Colors */
             --light-bg: #F8F9FA;
-            /* Light background */
             --dark-text: #264653;
-            /* Dark slate for text */
             --muted-text: #6C757D;
-            /* Muted gray for secondary text */
             --off-white: #FCFCFC;
-            /* Off-white for cards */
 
             /* Gradient Colors */
             --hero-gradient-start: rgba(38, 70, 83, 0.85);
@@ -105,12 +104,18 @@
             padding: 0 1rem;
         }
 
-        /* Navigation - Clean and Professional */
+        /* Navigation - Clean and Professional with Hero Background */
         .navbar {
             transition: var(--transition);
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
             padding: 1rem 0;
+            background: linear-gradient(135deg, rgba(38, 70, 83, 0.95), rgba(38, 70, 83, 0.9)) !important;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
@@ -118,15 +123,11 @@
             font-weight: 800;
             font-size: 1.75rem;
             transition: var(--transition);
-            color: var(--dark-text);
+            color: white;
         }
 
         .navbar-brand:hover {
             transform: scale(1.05);
-            color: var(--primary-color);
-        }
-
-        .navbar-brand span {
             color: var(--secondary-color);
         }
 
@@ -137,10 +138,11 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.9rem;
+            color: white !important;
         }
 
         .nav-link:hover {
-            color: var(--primary-color) !important;
+            color: var(--secondary-color) !important;
         }
 
         .nav-link::after {
@@ -223,19 +225,44 @@
             transform: translateY(-5px);
         }
 
-        /* Responsive improvements */
+        /* Sticky navbar */
+        @media (min-width: 992px) {
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1030;
+                transform: translateY(0);
+            }
+
+            .hero-content {
+                margin-top: 70px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+            }
+
             .hero-content h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-content .lead {
-                font-size: 1rem;
+            .btn {
+                font-size: 0.85rem;
             }
 
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1030;
+                background: linear-gradient(135deg, rgba(38, 70, 83, 0.95), rgba(38, 70, 83, 0.9)) !important;
+            }
+
+            .hero-content {
+                margin-top: 70px;
             }
         }
     </style>
@@ -261,10 +288,18 @@
                                 <i class="fas fa-home me-1"></i> Home
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/places">
+                        <!-- Places Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/places" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <i class="fas fa-mountain me-1"></i> Places
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/places">All Places</a></li>
+                                <li><a class="dropdown-item" href="/places/historical">Historical Places</a></li>
+                                <li><a class="dropdown-item" href="/places/natural">Natural Wonders</a></li>
+                                <li><a class="dropdown-item" href="/places/cultural">Cultural Sites</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/guides">
@@ -279,6 +314,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">
                                 <i class="fas fa-envelope me-1"></i> Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">
+                                <i class="fas fa-user me-1"></i> Dashboard
                             </a>
                         </li>
                     </ul>
@@ -310,8 +350,49 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <!-- Bootstrap Bundle (JS + Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Livewire Scripts -->
+    @livewireScripts
+    <!-- Custom JS -->
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Sticky navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
