@@ -2,12 +2,9 @@
 
 namespace App\Filament\Resources\Posts\Tables;
 
-use App\Models\Category;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\BooleanColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -21,13 +18,8 @@ class PostsTable
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('category.name')
+                    ->label('Category')
                     ->searchable()
-                    ->sortable(),
-                ImageColumn::make('thumbnail'),
-                BooleanColumn::make('is_published')
-                    ->label('Published'),
-                TextColumn::make('created_at')
-                    ->dateTime()
                     ->sortable(),
             ])
             ->filters([
