@@ -15,17 +15,12 @@ class Post extends Model
         'user_id',
         'title',
         'content',
-        'image_url',
-        'video_url',
         'thumbnail',
         'color',
         'slug',
         'category_id',
         'tags',
         'is_published',
-        'likes_count',
-        'comments_count',
-        'shares_count',
     ];
 
     protected $casts = [
