@@ -29,7 +29,12 @@ class PostResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return PostsTable::configure($table);
+        return $table
+            ->query(Post::with(['category', 'user']))
+            ->columns(PostsTable::configure($table)->getColumns())
+            ->filters(PostsTable::configure($table)->getFilters())
+            ->recordActions(PostsTable::configure($table)->getRecordActions())
+            ->toolbarActions(PostsTable::configure($table)->getToolbarActions());
     }
 
     public static function getRelations(): array
