@@ -11,9 +11,11 @@ use App\Filament\Admin\Resources\Categories\Schemas\CategoryInfolist;
 use App\Filament\Admin\Resources\Categories\Tables\CategoriesTable;
 use App\Models\Category;
 use BackedEnum;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class CategoryResource extends Resource
@@ -26,7 +28,12 @@ class CategoryResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return CategoryForm::configure($schema);
+        // return CategoryForm::configure($schema);
+        return $schema->schema([
+
+                TextInput::make('name')->required(),
+                TextInput::make('slug')->required(),
+        ]);
     }
 
     public static function infolist(Schema $schema): Schema
@@ -36,7 +43,12 @@ class CategoryResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return CategoriesTable::configure($table);
+        // return CategoriesTable::configure($table);
+        return $table
+        ->columns([
+            TextColumn::make('name'),
+            TextColumn::make('slug'),
+        ]);
     }
 
     public static function getRelations(): array
