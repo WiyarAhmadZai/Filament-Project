@@ -30,21 +30,32 @@ class PostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Posts';
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {
-        // return PostForm::configure($schema);
         return $schema->schema([
-            TextInput::make('title')->required(),
-            TextInput::make('slug')->required(),
+            TextInput::make('title')
+                ->required()
+                ->maxLength(255),
+            TextInput::make('slug')
+                ->required()
+                ->maxLength(255),
             Select::make('category_id')
-            ->options(Category::all()->pluck('name', 'id')),
-            ColorPicker::make('color')->required(),
-            TagsInput::make('tags')->required(),
-            FileUpload::make('thumbnail')->disk('public')->directory('posts/thumbnails')->required(),
-            MarkdownEditor::make('content')->required(),
-            Checkbox::make('is_published')->required(),
+                ->relationship('category', 'name')
+                ->required()
+                ->searchable(),
+            ColorPicker::make('color')
+                ->required(),
+            TagsInput::make('tags'),
+            FileUpload::make('thumbnail')
+                ->image()
+                ->directory('posts/thumbnails'),
+            MarkdownEditor::make('content')
+                ->required()
+                ->columnSpanFull(),
+            Checkbox::make('is_published')
+                ->default(true),
         ]);
     }
 
@@ -55,7 +66,12 @@ class PostResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return PostsTable::configure($table);
+        return $table
+            ->query(Post::with(['category', 'user']))
+            ->columns(PostsTable::configure($table)->getColumns())
+            ->filters(PostsTable::configure($table)->getFilters())
+            ->recordActions(PostsTable::configure($table)->getRecordActions())
+            ->toolbarActions(PostsTable::configure($table)->getToolbarActions());
     }
 
     public static function getRelations(): array
