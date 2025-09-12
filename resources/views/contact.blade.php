@@ -1,157 +1,128 @@
-@extends('bootstrap-layout')
+@extends('homepage-layout')
 
-@section('title', 'Contact Us - Afghanistan Tourism')
-
-@section('head')
-    <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-@endsection
+@section('title', 'Afghanistan Tourism - Contact Us')
 
 @section('content')
-    <!-- Hero Section -->
-    <section class="hero-section"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{{ asset('img/IMG_3623.JPG') }}') center center no-repeat; background-size: cover;">
-        <div class="container hero-content text-center text-white">
-            <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">
-                        Contact <span class="text-primary">Us</span>
-                    </h1>
-                    <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">
-                        Get in touch with our team for any inquiries about traveling to Afghanistan
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Information -->
+    <!-- Contact Hero Section -->
     <section class="py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold text-dark mb-3">Get In Touch</h2>
-                <p class="lead text-muted">
-                    We're here to help you plan your Afghan adventure
-                </p>
-            </div>
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold mb-4" data-aos="fade-up">Contact Us</h1>
+            <p class="lead text-muted mb-5" data-aos="fade-up" data-aos-delay="200">
+                Have questions about your Afghanistan trip? We're here to help!
+            </p>
+        </div>
+    </section>
 
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon bg-primary text-white mx-auto mb-4">
-                                <i class="bi bi-envelope fs-3"></i>
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <!-- Contact Information -->
+                    <div class="mb-5" data-aos="fade-up">
+                        <h2 class="h4 fw-bold mb-4">Get in Touch</h2>
+                        <p class="text-muted mb-4">We're here to help you plan your perfect trip to Afghanistan. Fill out
+                            the form below and we'll get back to you as soon as possible.</p>
+
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-map-marker-alt fa-lg text-primary"></i>
                             </div>
-                            <h5 class="card-title fw-bold">Email Us</h5>
-                            <p class="card-text text-muted">
-                                For general inquiries and information requests
-                            </p>
-                            <a href="mailto:mrwiyarahmadzai@gmail.com" class="btn btn-outline-primary">
-                                Send Email
-                            </a>
+                            <div>
+                                <h5 class="fw-bold mb-1">Address</h5>
+                                <p class="text-muted mb-0">Kabul, Afghanistan</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-phone fa-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Phone</h5>
+                                <p class="text-muted mb-0">+93 123 456 789</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-envelope fa-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Email</h5>
+                                <p class="text-muted mb-0">info@afghanistantourism.com</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="fas fa-clock fa-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Business Hours</h5>
+                                <p class="text-muted mb-0">Monday - Friday: 9am - 5pm (GMT+4:30)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="h4 fw-bold mb-4">Our Location</h2>
+                        <div class="ratio ratio-4x3 rounded-3 overflow-hidden">
+                            <!-- In a real application, this would be an embedded Google Map -->
+                            <div class="w-100 bg-white d-flex align-items-center justify-content-center">
+                                <p class="text-muted mb-0">Map would be displayed here</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon bg-success text-white mx-auto mb-4">
-                                <i class="bi bi-whatsapp fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">WhatsApp</h5>
-                            <p class="card-text text-muted">
-                                For quick responses and instant communication
-                            </p>
-                            <a href="https://wa.me/93776992603" class="btn btn-outline-success">
-                                Chat on WhatsApp
-                            </a>
-                        </div>
+                <div class="col-lg-6">
+                    <!-- Contact Form -->
+                    <div class="card border-0 shadow-sm p-4 mb-5" data-aos="fade-up">
+                        <h2 class="h4 fw-bold mb-4">Send Us a Message</h2>
+                        @livewire('contact-form')
                     </div>
-                </div>
 
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon bg-info text-white mx-auto mb-4">
-                                <i class="bi bi-telephone fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Call Us</h5>
-                            <p class="card-text text-muted">
-                                For immediate assistance and bookings
-                            </p>
-                            <a href="tel:+93776992603" class="btn btn-outline-info">
-                                Call Now
-                            </a>
+                    <!-- FAQ Section -->
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="h4 fw-bold mb-4">Frequently Asked Questions</h2>
+
+                        <!-- FAQ Item 1 -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">Is it safe to travel to Afghanistan?</h5>
+                            <p class="text-muted">Safety is our top priority. We only recommend destinations that are safe
+                                for tourists and provide expert guides to ensure your security throughout your journey.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto" data-aos="fade-up">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-5">
-                            <h3 class="fw-bold mb-4 text-center">Send us a Message</h3>
-                            <form id="contactForm" action="{{ route('feedback.store') }}" method="POST">
-                                @csrf
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="name" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Enter your name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Enter your email" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="subject" class="form-label">Subject</label>
-                                        <input type="text" class="form-control" id="subject" name="subject"
-                                            placeholder="Enter subject" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="message" class="form-label">Message</label>
-                                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg px-5">Send Message</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <!-- FAQ Item 2 -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">What's the best time to visit Afghanistan?</h5>
+                            <p class="text-muted">The best time to visit Afghanistan is from March to October when the
+                                weather is more temperate and most regions are accessible.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mt-5" data-aos="fade-up">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-5">
-                            <h3 class="fw-bold mb-4 text-center">Office Location</h3>
-                            <div class="text-center">
-                                <div class="feature-icon bg-primary text-white mx-auto mb-4">
-                                    <i class="bi bi-geo-alt fs-3"></i>
-                                </div>
-                                <h5 class="fw-bold">Afghanistan Tourism Office</h5>
-                                <p class="text-muted">
-                                    Kabul, Afghanistan<br>
-                                    Phone: +93 776 992 603<br>
-                                    Email: mrwiyarahmadzai@gmail.com
-                                </p>
-                                <div class="ratio ratio-16x9 mt-4">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3299.570500140472!2d69.179559!3d34.533333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d16a5a5e1e5b5b%3A0x8b5a5a5a5a5a5a5a!2sKabul%2C%20Afghanistan!5e0!3m2!1sen!2s!4v1623456789012!5m2!1sen!2s"
-                                        allowfullscreen></iframe>
-                                </div>
-                            </div>
+                        <!-- FAQ Item 3 -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-3">Do I need a visa to visit Afghanistan?</h5>
+                            <p class="text-muted">Yes, most visitors require a visa. We can assist you with the visa
+                                application process as part of our travel services.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Add AOS library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 @endsection
 
 @section('scripts')
